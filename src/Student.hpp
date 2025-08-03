@@ -3,7 +3,7 @@
 #include "Gender.hpp"
 
 class Student {
-public:
+private:
     std::string name_;
     std::string surname_;
     std::string address_;
@@ -19,4 +19,11 @@ public:
         Gender gender,
         int index,
         long pesel);
+
+    std::string getName();
+    std::string getSurname();
+    std::string getAddress();
+    Gender getGender();
+    int getIndex();
+    long getPesel();
 };

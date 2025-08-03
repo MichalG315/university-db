@@ -12,6 +12,7 @@ public:
     static long getStudentPesel();
     static bool isNotEmpty(const std::string& input);
     static Gender mapToGender(std::string gender);
+    static std::string toString(Gender gender);
     static std::string toLowerCase(const std::string& input);
     static bool isDigitsOnly(const std::string& str);
 };

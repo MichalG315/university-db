@@ -22,7 +22,7 @@ int main(int argc, char const* argv[]) {
             database.addNewStudent();
             break;
         case 2:
-            std::cout << "All database displayed\n";
+            database.showAllDatabase();
             break;
         case 3:
             std::cout << "Search for a student by surname\n";

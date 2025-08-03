@@ -10,4 +10,6 @@ private:
 public:
     void addNewStudent();
     Student getStudentData();
+    void showAllDatabase();
+    void printStudentData(Student student);
 };
