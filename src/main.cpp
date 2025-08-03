@@ -49,7 +49,7 @@ int main(int argc, char const* argv[]) {
             database.saveDatabaseToFile(fileName);
             return 0;
         default:
-            std::cout << "Provided number: -> " << choice << "<- is not correct. Please provide correct number.\n";
+            std::cout << "Provided number: -> " << choice << " <- is not correct. Please provide correct number.\n";
             break;
         }
     }

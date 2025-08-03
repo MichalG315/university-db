@@ -15,4 +15,5 @@ public:
     static std::string toString(Gender gender);
     static std::string toLowerCase(const std::string& input);
     static bool isDigitsOnly(const std::string& str);
+    static bool isPeselValid(std::string& pesel);
 };
