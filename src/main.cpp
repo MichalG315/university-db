@@ -1,9 +1,14 @@
 #include <iostream>
+#include <string>
 #include "Database.hpp"
+#include "FileUtils.hpp"
 
 int main(int argc, char const* argv[]) {
     Database database;
     int choice;
+    std::string fileName = "../files/input.csv";
+
+    database.addStudentsFromFile(FileUtils::readStudentsFromFile(fileName));
 
     while (true) {
         std::cout << "\n\n##### What do you want to do? Provide number #####\n\n";
@@ -25,13 +30,13 @@ int main(int argc, char const* argv[]) {
             database.showAllDatabase();
             break;
         case 3:
-            std::cout << "Search for a student by surname\n";
+            database.searchBySurname();
             break;
         case 4:
-            std::cout << "Search for a student by pesel\n";
+            database.searchByPesel();
             break;
         case 5:
-            std::cout << "Sort students by surname\n";
+            database.sortByPesel();
             break;
         case 6:
             std::cout << "Sort students by pesel\n";
@@ -41,6 +46,7 @@ int main(int argc, char const* argv[]) {
             break;
         case 8:
             std::cout << "Exit\n";
+            database.saveDatabaseToFile(fileName);
             return 0;
         default:
             std::cout << "Provided number: -> " << choice << "<- is not correct. Please provide correct number.\n";

@@ -11,12 +11,12 @@ std::string StudentUtils::getStudentName() {
     while (true) {
         std::cout << "What is the student's name? ";
         std::cin.sync();
-        std::getline(std::cin, name);
+        std::getline(std::cin >> std::ws, name);
 
         if (!name.empty()) {
             return name;
         } else {
-            std::cout << "Provided name is empty. Try again.\n";
+            std::cerr << "Provided name is empty. Try again.\n";
         }
     }
 }
@@ -25,12 +25,12 @@ std::string StudentUtils::getStudentSurname() {
     while (true) {
         std::cout << "What is the student's surname? ";
         std::cin.sync();
-        std::getline(std::cin, surname, '\n');
+        std::getline(std::cin >> std::ws, surname);
 
         if (!surname.empty()) {
             return surname;
         } else {
-            std::cout << "Provided surname is empty. Try again.\n";
+            std::cerr << "Provided surname is empty. Try again.\n";
         }
     }
 }
@@ -39,12 +39,12 @@ std::string StudentUtils::getStudentAddress() {
     while (true) {
         std::cout << "What is the student's address? ";
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::getline(std::cin >> std::ws, address, '\n');
+        std::getline(std::cin >> std::ws, address);
 
         if (!address.empty()) {
             return address;
         } else {
-            std::cout << "Provided address is empty. Try again.\n";
+            std::cerr << "Provided address is empty. Try again.\n";
         }
     }
 }
@@ -54,13 +54,13 @@ Gender StudentUtils::getStudentGender() {
 
     while (true) {
         std::cout << "What is the student's gender? Female or Male? ";
-        std::cin >> gender;
+        std::cin >> std::ws >> gender;
         mappedGender = mapToGender(toLowerCase(gender));
 
         if (!gender.empty() && !(mappedGender == Gender::Other)) {
             return mappedGender;
         } else {
-            std::cout << "Provided gender is empty or is incorrect. Try again.\n";
+            std::cerr << "Provided gender is empty or is incorrect. Try again.\n";
         }
     }
 }
@@ -68,12 +68,12 @@ int StudentUtils::getStudentIndex() {
     std::string index;
     while (true) {
         std::cout << "What is the student's index? The index should contain 6 digits. ";
-        std::cin >> index;
+        std::cin >> std::ws >> index;
 
         if (!index.empty() && isDigitsOnly(index) && index.length() == 6) {
             return std::stoi(index);
         } else {
-            std::cout << "Provided index is empty or is not only digits. Try again.\n";
+            std::cerr << "Provided index is empty or is not only digits. Try again.\n";
         }
     }
 }
@@ -81,12 +81,12 @@ long StudentUtils::getStudentPesel() {
     std::string pesel;
     while (true) {
         std::cout << "What is the student's pesel? Pesel should contain 11 digits. ";
-        std::cin >> pesel;
+        std::cin >> std::ws >> pesel;
 
         if (!pesel.empty() && isDigitsOnly(pesel) && pesel.length() == 11) {
             return std::stol(pesel);
         } else {
-            std::cout << "Provided pesel is empty or is not only digits. Try again.\n";
+            std::cerr << "Provided pesel is empty or is not only digits. Try again.\n";
         }
     }
 }
