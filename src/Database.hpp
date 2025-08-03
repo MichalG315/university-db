@@ -16,7 +16,10 @@ public:
     void searchBySurname();
     void searchByPesel();
     void sortByPesel();
+    void sortBySurname();
+    void removeByIndex();
     void addStudentsFromFile(std::vector<Student> students);
     void saveDatabaseToFile(std::string fileName);
     static bool compareByPesel(Student& a, Student& b);
+    static bool compareBySurname(Student& a, Student& b);
 };

@@ -39,10 +39,10 @@ int main(int argc, char const* argv[]) {
             database.sortByPesel();
             break;
         case 6:
-            std::cout << "Sort students by pesel\n";
+            database.sortBySurname();
             break;
         case 7:
-            std::cout << "Delete a student by pesel\n";
+            database.removeByIndex();
             break;
         case 8:
             std::cout << "Exit\n";

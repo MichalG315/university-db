@@ -115,8 +115,44 @@ void Database::sortByPesel() {
     showAllDatabase();
 }
 
+void Database::sortBySurname() {
+    if (database_.empty()) {
+        std::cerr << "Database is empty!\n";
+        return;
+    }
+
+    std::sort(database_.begin(), database_.end(), Database::compareBySurname);
+
+    showAllDatabase();
+}
+
+void Database::removeByIndex() {
+    int index;
+
+    if (database_.empty()) {
+        std::cerr << "Database is empty!\n";
+        return;
+    }
+
+    std::cout << "Provide index to remove student: ";
+    std::cin >> std::ws >> index;
+
+    for (auto it = database_.begin(); it != database_.end(); ++it) {
+        if (it->getIndex() == index) {
+            database_.erase(it);
+            std::cout << "Student with index: " << index << " is removed.\n";
+            return;
+        }
+    }
+    std::cout << "No student with provided index found.\n";
+}
+
 bool Database::compareByPesel(Student& a, Student& b) {
     return a.getPesel() < b.getPesel();
+}
+
+bool Database::compareBySurname(Student& a, Student& b) {
+    return a.getSurname() < b.getSurname();
 }
 
 void Database::addStudentsFromFile(std::vector<Student> students) {
