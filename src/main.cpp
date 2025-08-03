@@ -2,9 +2,14 @@
 #include <string>
 #include "Database.hpp"
 #include "FileUtils.hpp"
+#include "StudentUtils.hpp"
+#include "Tests.hpp"
 
-int main(int argc, char const* argv[]) {
+int main() {
     Database database;
+    Tests tests;
+    tests.runTests();
+
     int choice;
     std::string fileName = "../files/input.csv";
 
@@ -24,16 +29,17 @@ int main(int argc, char const* argv[]) {
 
         switch (choice) {
         case 1:
-            database.addNewStudent();
+            database.addNewStudent(database.getStudentData());
             break;
         case 2:
+
             database.showAllDatabase();
             break;
         case 3:
-            database.searchBySurname();
+            database.searchBySurname(StudentUtils::getStudentSurname());
             break;
         case 4:
-            database.searchByPesel();
+            database.searchByPesel(StudentUtils::getStudentPesel());
             break;
         case 5:
             database.sortByPesel();
@@ -42,7 +48,7 @@ int main(int argc, char const* argv[]) {
             database.sortBySurname();
             break;
         case 7:
-            database.removeByIndex();
+            database.removeByIndex(StudentUtils::getStudentIndex());
             break;
         case 8:
             std::cout << "Exit\n";

@@ -9,8 +9,7 @@
 #include "Student.hpp"
 #include "StudentUtils.hpp"
 
-void Database::addNewStudent() {
-    Student student = getStudentData();
+void Database::addNewStudent(Student student) {
     database_.push_back(student);
 };
 
@@ -50,17 +49,13 @@ void Database::printStudentData(Student student) {
     std::cout << "Student pesel: " << student.getPesel() << "\n";
 }
 
-void Database::searchBySurname() {
-    std::string surname;
+std::vector<Student> Database::searchBySurname(const std::string& surname) {
     std::vector<Student> results;
 
     if (database_.empty()) {
         std::cerr << "Database is empty!\n";
-        return;
+        return results;
     }
-
-    std::cout << "Provide surname to search: ";
-    std::cin >> std::ws >> surname;
 
     for (Student& student : database_) {
         if (surname.compare(student.getSurname()) == 0) {
@@ -70,38 +65,36 @@ void Database::searchBySurname() {
 
     if (results.empty()) {
         std::cerr << "No student with provided name was found!\n";
-        return;
+        return results;
     }
 
     std::cout << "############ Found students ############\n";
     showSearchedDatabase(results);
+    return results;
 }
 
-void Database::searchByPesel() {
-    std::string pesel;
+std::vector<Student> Database::searchByPesel(const long pesel) {
     std::vector<Student> results;
 
     if (database_.empty()) {
         std::cerr << "Database is empty!\n";
-        return;
+        return results;
     }
 
-    std::cout << "Provide pesel to search: ";
-    std::cin >> std::ws >> pesel;
-
     for (Student& student : database_) {
-        if (std::stol(pesel) == student.getPesel()) {
+        if (pesel == student.getPesel()) {
             results.push_back(student);
         }
     }
 
     if (results.empty()) {
         std::cerr << "No student with provided pesel was found!\n";
-        return;
+        return results;
     }
 
     std::cout << "############ Found students ############\n";
     showSearchedDatabase(results);
+    return results;
 }
 
 void Database::sortByPesel() {
@@ -126,16 +119,11 @@ void Database::sortBySurname() {
     showAllDatabase();
 }
 
-void Database::removeByIndex() {
-    int index;
-
+void Database::removeByIndex(const int index) {
     if (database_.empty()) {
         std::cerr << "Database is empty!\n";
         return;
     }
-
-    std::cout << "Provide index to remove student: ";
-    std::cin >> std::ws >> index;
 
     for (auto it = database_.begin(); it != database_.end(); ++it) {
         if (it->getIndex() == index) {
@@ -161,4 +149,8 @@ void Database::addStudentsFromFile(std::vector<Student> students) {
 
 void Database::saveDatabaseToFile(std::string fileName) {
     FileUtils::writeStudentsToCSV(fileName, database_);
+}
+
+std::vector<Student> Database::getStudentsDatabaseForTest() {
+    return database_;
 }
